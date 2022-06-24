@@ -9,3 +9,11 @@ class Order:
         self.__id = uid
         self.__customer_id = customer_id
         self.__items = items
+        self.__total = self.total()
+
+    def total(self) -> int:
+        total = 0
+        for item in self.__items:
+            total += item.price
+
+        return total
