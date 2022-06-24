@@ -1,6 +1,6 @@
 from typing import List
 
-from src.entity.OrderItem import OrderItem
+from src.entity.order_item import OrderItem
 
 
 class Order:

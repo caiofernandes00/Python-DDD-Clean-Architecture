@@ -1,4 +1,4 @@
-from src.entity.OrderItem import OrderItem
+from src.entity.order_item import OrderItem
 from src.entity.address import Address
 from src.entity.customer import Customer
 from src.entity.order import Order
