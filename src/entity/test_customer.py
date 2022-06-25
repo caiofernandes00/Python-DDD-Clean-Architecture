@@ -6,7 +6,7 @@ from src.entity.customer import Customer
 
 class TestCustomer:
 
-    # CREATION WITH SUCCESS
+    # region VALIDATION
     def test_create_customer_with_success(self):
         # When
         customer = Customer("1", "fake-name")
@@ -32,20 +32,19 @@ class TestCustomer:
         assert customer.name == "fake-name"
         assert customer.address == address
 
-    # CREATION WITH ERROR
     def test_create_customer_with_invalid_id(self):
         # Then
         with pytest.raises(Exception):
-            Customer(uid=None, name="fake-name")
             Customer(uid="", name="fake-name")
 
     def test_create_customer_with_invalid_name(self):
         # Then
         with pytest.raises(Exception):
-            Customer(uid="1", name=None)
             Customer(uid="1", name="")
 
-    # ACTIVATE CUSTOMER
+    # endregion
+
+    # region ACTIVATE CUSTOMER
     def test_activate_customer_with_success(self):
         # When
         address = Address("St. Cities Skylines", number=10, zipcode="23232-232", city="Kansas")
@@ -62,7 +61,9 @@ class TestCustomer:
         with pytest.raises(Exception):
             customer.activate()
 
-    # CHANGING VALUES
+    # endregion
+
+    # region CHANGING VALUES
     def test_changing_name_with_success(self):
         # When
         customer = Customer("1", "fake-name")
@@ -89,15 +90,7 @@ class TestCustomer:
 
         # Then
         assert customer.address == address
-        customer.change_address(address2)
+        customer.address = address2
         assert customer.address == address2
 
-    def test_changing_address_with_error(self):
-        # When
-        address = Address("St. Cities Skylines", number=10, zipcode="23232-232", city="Kansas")
-        customer = Customer("1", "fake-name", address)
-
-        # Then
-        assert customer.address == address
-        with pytest.raises(Exception):
-            customer.change_address(None)
+    # endregion

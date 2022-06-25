@@ -27,9 +27,9 @@ class Customer:
     def address(self) -> Address:
         return self.__address
 
-    def change_address(self, address: Address) -> None:
+    @address.setter
+    def address(self, address: Address) -> None:
         self.__address = address
-        self.__validate_address()
 
     def validate(self):
         self.__validate_id()

@@ -1,6 +1,6 @@
 class OrderItem:
 
-    def __init__(self, uid: str, name: str, price: int):
+    def __init__(self, uid: str, name: str, price: float):
         self.__id = uid
         self.__name = name
         self.__price = price
@@ -14,5 +14,5 @@ class OrderItem:
         return self.__name
 
     @property
-    def price(self) -> int:
+    def price(self) -> float:
         return self.__price
