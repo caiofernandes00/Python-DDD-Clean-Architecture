@@ -1,7 +1,9 @@
 class OrderItem:
 
-    def __init__(self, uid: str, name: str, price: float):
+    def __init__(self, uid: str, name: str, price: float, product_id: str, quantity: int):
         self.__id = uid
+        self.__product_id = product_id
+        self.__quantity = quantity
         self.__name = name
         self.__price = price
         self.validate()
@@ -18,10 +20,20 @@ class OrderItem:
     def price(self) -> float:
         return self.__price
 
+    @property
+    def product_id(self):
+        return self.__product_id
+
+    @property
+    def quantity(self) -> float:
+        return self.__quantity
+
     def validate(self):
         self.__validate_id()
         self.__validate_name()
         self.__validate_price()
+        self.__validate_product_id()
+        self.__validate_quantity()
 
     def __validate_id(self) -> None:
         if self.__id.__len__() == 0:
@@ -34,3 +46,11 @@ class OrderItem:
     def __validate_price(self):
         if self.__price < 0:
             raise Exception("price cannot be negative")
+
+    def __validate_product_id(self):
+        if self.__product_id.__len__() == 0:
+            raise Exception("product_id is required")
+
+    def __validate_quantity(self) -> None:
+        if self.__quantity < 0:
+            raise Exception("quantity should be greater than zero")

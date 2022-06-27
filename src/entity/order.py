@@ -27,7 +27,7 @@ class Order:
     def total(self) -> int:
         total = 0
         for item in self.__items:
-            total += item.price
+            total += (item.price * item.quantity)
 
         return total
 
