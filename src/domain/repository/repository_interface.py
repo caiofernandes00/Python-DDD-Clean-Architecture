@@ -14,7 +14,7 @@ class RepositoryInterface(ABC, Generic[T]):
         pass
 
     @abstractmethod
-    def find(self, id: str) -> T:
+    def find(self, uid: str) -> T:
         pass
 
     @abstractmethod
