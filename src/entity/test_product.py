@@ -51,4 +51,10 @@ class TestProduct:
         with pytest.raises(Exception):
             product.change_name("")
 
+    def test_update_name_with_invalid_price(self):
+        # When
+        product = Product("1", "name", 100.00)
+        with pytest.raises(Exception):
+            product.change_price(-1)
+
     # endregion

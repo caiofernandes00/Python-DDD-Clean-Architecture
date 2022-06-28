@@ -22,6 +22,10 @@ class Product:
         self.__name = name
         self.__validate_name()
 
+    def change_price(self, price: float):
+        self.__price = price
+        self.__validate_price()
+
     def validate(self):
         self.__validate_id()
         self.__validate_name()

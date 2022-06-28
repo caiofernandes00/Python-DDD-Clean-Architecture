@@ -12,9 +12,11 @@ class TestCustomer:
         customer = Customer("1", "fake-name")
 
         # Then
-        assert hasattr(customer, "_Customer__id")
-        assert hasattr(customer, "_Customer__name")
-        assert hasattr(customer, "_Customer__address")
+        assert hasattr(customer, "id")
+        assert hasattr(customer, "name")
+        assert hasattr(customer, "address")
+        assert hasattr(customer, "reward_points")
+
         assert customer.id == '1'
         assert customer.name == "fake-name"
         assert customer.address is None
@@ -25,9 +27,11 @@ class TestCustomer:
         customer = Customer("1", "fake-name", address)
 
         # Then
-        assert hasattr(customer, "_Customer__id")
-        assert hasattr(customer, "_Customer__name")
-        assert hasattr(customer, "_Customer__address")
+        assert hasattr(customer, "id")
+        assert hasattr(customer, "name")
+        assert hasattr(customer, "address")
+        assert hasattr(customer, "reward_points")
+
         assert customer.id == '1'
         assert customer.name == "fake-name"
         assert customer.address == address
@@ -92,5 +96,16 @@ class TestCustomer:
         assert customer.address == address
         customer.address = address2
         assert customer.address == address2
+
+    def test_changing_reward_points_with_success(self):
+        # When
+        address = Address("St. Cities Skylines", number=10, zipcode="23232-232", city="Kansas")
+        customer = Customer("1", "fake-name", address)
+        assert customer.reward_points == 0
+
+        customer.add_reward_points(1)
+
+        # Then
+        assert customer.reward_points == 1
 
     # endregion

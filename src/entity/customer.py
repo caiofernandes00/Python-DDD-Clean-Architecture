@@ -6,6 +6,7 @@ class Customer:
         self.__id = uid
         self.__name = name
         self.__active = False
+        self.__reward_points: float = 0
 
         self.__address: Address = address
 
@@ -26,6 +27,13 @@ class Customer:
     @property
     def address(self) -> Address:
         return self.__address
+
+    @property
+    def reward_points(self):
+        return self.__reward_points
+
+    def add_reward_points(self, points: float):
+        self.__reward_points += points
 
     @address.setter
     def address(self, address: Address) -> None:

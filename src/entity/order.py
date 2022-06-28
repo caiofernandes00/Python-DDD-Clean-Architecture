@@ -24,7 +24,7 @@ class Order:
     def items(self) -> List[OrderItem]:
         return self.__items
 
-    def total(self) -> int:
+    def total(self) -> float:
         total = 0
         for item in self.__items:
             total += (item.price * item.quantity)
