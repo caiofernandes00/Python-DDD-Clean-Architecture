@@ -1,6 +1,6 @@
 import pytest
 
-from src.entity.order_item import OrderItem
+from src.domain.entity.order_item import OrderItem
 
 
 class TestOrderItem:

@@ -1,4 +1,4 @@
-from src.entity.address import Address
+from src.domain.entity.address import Address
 
 
 class Customer:

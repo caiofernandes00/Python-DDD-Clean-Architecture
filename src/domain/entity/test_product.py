@@ -1,6 +1,6 @@
 import pytest
 
-from src.entity.product import Product
+from src.domain.entity.product import Product
 
 
 class TestProduct:

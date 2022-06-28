@@ -1,5 +1,5 @@
-from src.entity.product import Product
-from src.service.product_service import ProductService
+from src.domain.entity.product import Product
+from src.domain.service.product_service import ProductService
 
 
 class TestProductService:

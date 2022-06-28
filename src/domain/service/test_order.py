@@ -1,7 +1,7 @@
-from src.entity.customer import Customer
-from src.entity.order import Order
-from src.entity.order_item import OrderItem
-from src.service.order_service import OrderService
+from src.domain.entity.customer import Customer
+from src.domain.entity.order import Order
+from src.domain.entity.order_item import OrderItem
+from src.domain.service.order_service import OrderService
 
 
 class TestOrder:
