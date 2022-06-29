@@ -52,5 +52,5 @@ class OrderItem:
             raise Exception("product_id is required")
 
     def __validate_quantity(self) -> None:
-        if self.__quantity < 0:
+        if self.__quantity < 1:
             raise Exception("quantity should be greater than zero")
