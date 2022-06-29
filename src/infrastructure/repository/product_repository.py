@@ -12,11 +12,14 @@ class ProductRepository(ProductRepositoryInterface):
 
     def update(self, entity: Product) -> None:
         ProductModel.update(name=entity.name, price=entity.price) \
-            .where(ProductModel.id == "1") \
+            .where(ProductModel.id == entity.id) \
             .execute()
 
     def find(self, uid: str) -> Product:
-        return ProductModel.get(ProductModel.id == "1")
+        try:
+            return ProductModel.get(ProductModel.id == uid)
+        except Exception as ex:
+            raise Exception("product not found")
 
     def find_all(self) -> List[Product]:
         return ProductModel.select()

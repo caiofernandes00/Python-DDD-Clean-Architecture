@@ -23,7 +23,7 @@ class TestProductRepository:
         product_repository = ProductRepository()
         product_repository.create(product)
 
-        query: Product = ProductModel.get(ProductModel.id == "1")
+        query: ProductModel = ProductModel.get(ProductModel.id == "1")
 
         # Then
         assert query.id == '1'
@@ -36,7 +36,7 @@ class TestProductRepository:
         product_repository = ProductRepository()
         product_repository.create(product)
 
-        query: Product = ProductModel.get(ProductModel.id == "1")
+        query: ProductModel = ProductModel.get(ProductModel.id == "1")
 
         # Then
         assert query.name == 'fake-name'
@@ -45,7 +45,7 @@ class TestProductRepository:
         updated_product = Product("1", "fake-name2", 200.00)
         product_repository.update(updated_product)
 
-        query: Product = ProductModel.get(ProductModel.id == "1")
+        query: ProductModel = ProductModel.get(ProductModel.id == "1")
 
         assert query.name == 'fake-name2'
         assert query.price == 200.00
@@ -56,12 +56,21 @@ class TestProductRepository:
         product_repository = ProductRepository()
         product_repository.create(product)
 
-        query: Product = product_repository.find(product.id)
+        query: Product = product_repository.find('1')
 
         # Then
         assert query.id == '1'
         assert query.name == 'fake-name'
         assert query.price == 100.00
+
+    def test_finding_one_that_dont_exist(self):
+        # When
+        product = Product("1", "fake-name", 100.00)
+        product_repository = ProductRepository()
+        product_repository.create(product)
+
+        with pytest.raises(Exception):
+            product_repository.find('2')
 
     def test_finding_all(self):
         # When

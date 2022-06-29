@@ -10,5 +10,5 @@ class Customer(BaseModel):
     number = IntegerField(null=False)
     zipcode = CharField(null=False)
     city = CharField(null=False)
-    activate = BooleanField(default=False)
+    active = BooleanField(default=False)
     reward_points = IntegerField(default=1)
