@@ -1,7 +1,6 @@
 from peewee import CharField, FloatField, ForeignKeyField, IntegerField
 
 from src.infrastructure.db.peewee.model.base_model import BaseModel
-from src.infrastructure.db.peewee.model.customer_model import Customer
 from src.infrastructure.db.peewee.model.order_model import Order
 from src.infrastructure.db.peewee.model.product_model import Product
 
@@ -13,4 +12,3 @@ class OrderItem(BaseModel):
     quantity = IntegerField(null=False)
     name = CharField(null=False)
     price = FloatField(null=False)
-
