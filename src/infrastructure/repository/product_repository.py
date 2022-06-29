@@ -11,7 +11,7 @@ class ProductRepository(ProductRepositoryInterface):
         ProductModel.create(id=entity.id, name=entity.name, price=entity.price)
 
     def update(self, entity: Product) -> None:
-        ProductModel.update(id=entity.id, name=entity.name, price=entity.price) \
+        ProductModel.update(name=entity.name, price=entity.price) \
             .where(ProductModel.id == "1") \
             .execute()
 

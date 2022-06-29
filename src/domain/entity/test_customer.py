@@ -94,7 +94,7 @@ class TestCustomer:
 
         # Then
         assert customer.address == address
-        customer.address = address2
+        customer.change_address(address2)
         assert customer.address == address2
 
     def test_changing_reward_points_with_success(self):

@@ -35,8 +35,7 @@ class Customer:
     def add_reward_points(self, points: float):
         self.__reward_points += points
 
-    @address.setter
-    def address(self, address: Address) -> None:
+    def change_address(self, address: Address) -> None:
         self.__address = address
 
     def validate(self):
