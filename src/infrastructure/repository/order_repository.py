@@ -25,8 +25,13 @@ class OrderRepository(OrderRepositoryInterface):
             .where(OrderModel.id == entity.id) \
             .execute()
 
+        order_items_model = [OrderItemModel(id=order_item.id, order_id=entity.id, product_id=order_item.product_id,
+                                            quantity=order_item.quantity, name=order_item.name, price=order_item.price)
+                             for order_item in entity.items]
+
         with sqlite_db.atomic():
-            OrderItemModel.bulk_update([x.quantity for x in entity.items], fields=[OrderItem.quantity], batch_size=10)
+            OrderItemModel.bulk_update(order_items_model, fields=['quantity'],
+                                       batch_size=10)
 
     def find(self, uid: str) -> Order:
         try:

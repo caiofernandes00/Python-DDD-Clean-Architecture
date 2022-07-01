@@ -85,7 +85,33 @@ class TestOrderRepository:
         self.validate_order_item(order_item_model)
 
     def test_updating(self):
-        pass
+        # When
+        order = self.create_order()
+        order_repository = OrderRepository()
+        order_repository.create(order)
+
+        order_model: OrderModel = OrderModel.get(OrderModel.id == "o1")
+        order_item_model: List[OrderItemModel] = OrderItemModel.select().join(OrderModel).where(
+            OrderItemModel.order_id == order_model.id)
+
+        self.validate_order(order_model)
+        self.validate_order_item(order_item_model)
+
+        updated_order = order
+        updated_order.items[0].change_quantity(4)
+        updated_order.items[1].change_quantity(4)
+
+        order_repository.update(updated_order)
+
+        order_model: OrderModel = OrderModel.get(OrderModel.id == "o1")
+        order_item_model: List[OrderItemModel] = OrderItemModel.select().join(OrderModel).where(
+            OrderItemModel.order_id == order_model.id)
+
+        # Then
+        assert updated_order.total() == 1200
+
+        assert order_item_model[0].quantity == 4
+        assert order_item_model[0].quantity == 4
 
     def test_finding_one(self):
         pass

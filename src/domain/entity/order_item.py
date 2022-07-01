@@ -25,8 +25,11 @@ class OrderItem:
         return self.__product_id
 
     @property
-    def quantity(self) -> float:
+    def quantity(self) -> int:
         return self.__quantity
+
+    def change_quantity(self, new_amount: int):
+        self.__quantity = new_amount
 
     def validate(self):
         self.__validate_id()
