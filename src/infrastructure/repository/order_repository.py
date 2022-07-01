@@ -4,21 +4,21 @@ from src.domain.entity.order import Order
 from src.domain.entity.order_item import OrderItem
 from src.domain.repository.order_repository_interface import OrderRepositoryInterface
 from src.infrastructure.db.peewee.model.base_model import sqlite_db
-from src.infrastructure.db.peewee.model.order_item_model import OrderItem as OrderItemModel
-from src.infrastructure.db.peewee.model.order_model import Order as OrderModel
+from src.infrastructure.db.peewee.model.order_item_model import OrderItemModel
+from src.infrastructure.db.peewee.model.order_model import OrderModel
 
 
 class OrderRepository(OrderRepositoryInterface):
     def create(self, entity: Order) -> None:
         order_model = OrderModel.create(id=entity.id, customer_id=entity.customer_id, total=entity.total())
 
-        order_items: List[OrderItemModel]
-        order_items = [OrderItemModel(id=order_item.id, order_id=order_model.id, product_id=order_item.product_id,
-                                      quantity=order_item.quantity, name=order_item.name, price=order_item.price) for
-                       order_item in entity.items]
+        order_items_model: List[OrderItemModel]
+        order_items_model = [OrderItemModel(id=order_item.id, order_id=order_model.id, product_id=order_item.product_id,
+                                            quantity=order_item.quantity, name=order_item.name, price=order_item.price)
+                             for order_item in entity.items]
 
         with sqlite_db.atomic():
-            OrderItemModel.bulk_create(order_items, batch_size=10)
+            OrderItemModel.bulk_create(order_items_model, batch_size=10)
 
     def update(self, entity: Order) -> None:
         OrderModel.update(total=entity.total()) \
@@ -31,7 +31,7 @@ class OrderRepository(OrderRepositoryInterface):
     def find(self, uid: str) -> Order:
         try:
             order_model = OrderModel.get(OrderModel.id == uid)
-            order_item_model = OrderItemModel.select().join(OrderModel).where(OrderModel.id == uid).get()
+            order_item_model = OrderItemModel.select().join(OrderModel).where(OrderItemModel.order_id == uid).get()
             return self.__build_entity(order_model, order_item_model)
         except Exception as ex:
             raise Exception("customer not found")
@@ -41,7 +41,7 @@ class OrderRepository(OrderRepositoryInterface):
         order_models = OrderModel.select()
 
         for order_model in order_models:
-            order_item_model = OrderItemModel.select().join(OrderModel).where(OrderModel.id == order_model.id).get()
+            order_item_model = OrderItemModel.select().join(OrderModel).where(OrderModel.id == order_model.id)
             orders.append(self.__build_entity(order_model, order_item_model))
 
         return orders

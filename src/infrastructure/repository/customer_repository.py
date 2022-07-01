@@ -3,7 +3,7 @@ from typing import List
 from src.domain.entity.address import Address
 from src.domain.entity.customer import Customer
 from src.domain.repository.customer_repository_interface import CustomerRepositoryInterface
-from src.infrastructure.db.peewee.model.customer_model import Customer as CustomerModel
+from src.infrastructure.db.peewee.model.customer_model import CustomerModel as CustomerModel
 
 
 class CustomerRepository(CustomerRepositoryInterface):

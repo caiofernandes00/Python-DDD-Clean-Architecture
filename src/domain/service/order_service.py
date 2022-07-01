@@ -10,7 +10,7 @@ class OrderService:
     @staticmethod
     def place_order(customer: Customer, items: List[OrderItem]) -> Order:
         if len(items) == 0:
-            raise Exception("Order must have at least one item")
+            raise Exception("OrderModel must have at least one item")
 
         order = Order(str(uuid.uuid4()), customer.id, items)
         customer.add_reward_points(order.total() / 2)

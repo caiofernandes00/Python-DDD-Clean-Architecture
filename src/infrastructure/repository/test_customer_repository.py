@@ -5,7 +5,7 @@ import pytest
 from src.domain.entity.address import Address
 from src.domain.entity.customer import Customer
 from src.infrastructure.db.peewee.model.base_model import sqlite_db
-from src.infrastructure.db.peewee.model.customer_model import Customer as CustomerModel
+from src.infrastructure.db.peewee.model.customer_model import CustomerModel
 from src.infrastructure.repository.customer_repository import CustomerRepository
 
 

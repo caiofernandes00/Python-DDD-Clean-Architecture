@@ -4,7 +4,7 @@ import pytest
 
 from src.domain.entity.product import Product
 from src.infrastructure.db.peewee.model.base_model import sqlite_db
-from src.infrastructure.db.peewee.model.product_model import Product as ProductModel
+from src.infrastructure.db.peewee.model.product_model import ProductModel
 from src.infrastructure.repository.product_repository import ProductRepository
 
 
