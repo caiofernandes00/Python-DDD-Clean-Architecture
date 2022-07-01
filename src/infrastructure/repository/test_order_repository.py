@@ -114,10 +114,54 @@ class TestOrderRepository:
         assert order_item_model[0].quantity == 4
 
     def test_finding_one(self):
-        pass
+        # When
+        order = self.create_order()
+        order_repository = OrderRepository()
+        order_repository.create(order)
+
+        order_returned: Order = order_repository.find(order.id)
+
+        # Then
+        assert order_returned.id == order.id
+        assert order_returned.total() == order.total()
+        assert order_returned.items[0].id == order.items[0].id
+        assert order_returned.items[0].name == order.items[0].name
+        assert order_returned.items[0].price == order.items[0].price
+        assert order_returned.items[0].quantity == order.items[0].quantity
+        assert order_returned.items[0].product_id == order.items[0].product_id
+
+        assert order_returned.items[1].id == order.items[1].id
+        assert order_returned.items[1].name == order.items[1].name
+        assert order_returned.items[1].price == order.items[1].price
+        assert order_returned.items[1].quantity == order.items[1].quantity
+        assert order_returned.items[1].product_id == order.items[1].product_id
 
     def test_finding_one_that_dont_exist(self):
-        pass
+        # When
+        order_repository = OrderRepository()
+
+        with pytest.raises(Exception):
+            order_repository.find("bazinga")
 
     def test_finding_all(self):
-        pass
+        # When
+        order = self.create_order()
+        order_repository = OrderRepository()
+        order_repository.create(order)
+
+        order_returned: List[Order] = order_repository.find_all()
+
+        # Then
+        assert order_returned[0].id == order.id
+        assert order_returned[0].total() == order.total()
+        assert order_returned[0].items[0].id == order.items[0].id
+        assert order_returned[0].items[0].name == order.items[0].name
+        assert order_returned[0].items[0].price == order.items[0].price
+        assert order_returned[0].items[0].quantity == order.items[0].quantity
+        assert order_returned[0].items[0].product_id == order.items[0].product_id
+
+        assert order_returned[0].items[1].id == order.items[1].id
+        assert order_returned[0].items[1].name == order.items[1].name
+        assert order_returned[0].items[1].price == order.items[1].price
+        assert order_returned[0].items[1].quantity == order.items[1].quantity
+        assert order_returned[0].items[1].product_id == order.items[1].product_id

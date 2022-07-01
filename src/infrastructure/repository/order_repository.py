@@ -35,8 +35,9 @@ class OrderRepository(OrderRepositoryInterface):
 
     def find(self, uid: str) -> Order:
         try:
-            order_model = OrderModel.get(OrderModel.id == uid)
-            order_item_model = OrderItemModel.select().join(OrderModel).where(OrderItemModel.order_id == uid).get()
+            order_item_model: List[OrderItemModel] = OrderItemModel.select().join(OrderModel).where(
+                OrderItemModel.order_id == uid)
+            order_model = order_item_model[0].order
             return self.__build_entity(order_model, order_item_model)
         except Exception as ex:
             raise Exception("customer not found")
