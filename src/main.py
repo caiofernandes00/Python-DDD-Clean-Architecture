@@ -1,7 +1,7 @@
-from src.domain.entity.order_item import OrderItem
-from src.domain.entity.address import Address
-from src.domain.entity.customer import Customer
-from src.domain.entity.order import Order
+from src.domain.checkout.entity.order import Order
+from src.domain.checkout.entity.order_item import OrderItem
+from src.domain.customer.value_object.address import Address
+from src.domain.customer.entity.customer import Customer
 
 if __name__ == "__main__":
     customer = Customer("123", "Wall Street")

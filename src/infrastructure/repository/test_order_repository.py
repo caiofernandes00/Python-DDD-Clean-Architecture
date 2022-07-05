@@ -2,11 +2,11 @@ from typing import List
 
 import pytest
 
-from src.domain.entity.address import Address
-from src.domain.entity.customer import Customer
-from src.domain.entity.order import Order
-from src.domain.entity.order_item import OrderItem
-from src.domain.entity.product import Product
+from src.domain.customer.value_object.address import Address
+from src.domain.customer.entity.customer import Customer
+from src.domain.checkout.entity.order import Order
+from src.domain.checkout.entity.order_item import OrderItem
+from src.domain.product.entity.product import Product
 from src.infrastructure.db.peewee.model.base_model import sqlite_db
 from src.infrastructure.db.peewee.model.customer_model import CustomerModel as CustomerModel
 from src.infrastructure.db.peewee.model.order_item_model import OrderItemModel
