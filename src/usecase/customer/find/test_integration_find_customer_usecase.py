@@ -43,3 +43,23 @@ class TestFindCustomer:
         assert output_dto.address.number == result.address.number
         assert output_dto.address.zip == result.address.zip
         assert output_dto.address.city == result.address.city
+
+    def test_not_find_customer(self):
+        # Arrange
+        input_dto = InputFindCustomerDTO(id="2")
+        output_dto = OutputFindCustomerDTO(id="1", name="John Doe",
+                                           address=OutputFindCustomerAddressDTO(street="Street", city="City", number=1,
+                                                                                zip="12345"))
+
+        address = Address('Street', 1, '12345', 'City')
+        customer = Customer("1", "John Doe", address)
+        CustomerModel.create(id=customer.id, name=customer.name, street=customer.address.street,
+                             number=customer.address.number, zipcode=customer.address.zipcode,
+                             city=customer.address.city, active=customer.active, reward_points=customer.reward_points)
+
+        # Act
+        customer_repository = CustomerRepository()
+
+        # Assert
+        with pytest.raises(Exception):
+            FindCustomerUseCase(customer_repository).execute(input_dto)
