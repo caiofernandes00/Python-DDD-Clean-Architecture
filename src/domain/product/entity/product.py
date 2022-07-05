@@ -1,4 +1,7 @@
-class Product:
+from src.domain.product.entity.product_interface import ProductInterface
+
+
+class Product(ProductInterface):
 
     def __init__(self, uid: str, name: str, price: float):
         self.__id = uid
