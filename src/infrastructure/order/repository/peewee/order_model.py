@@ -1,7 +1,7 @@
 from peewee import CharField, FloatField, ForeignKeyField
 
-from src.infrastructure.db.peewee.model.base_model import BaseModel
-from src.infrastructure.db.peewee.model.customer_model import CustomerModel
+from src.infrastructure.shared.repository.peewee.base_model import BaseModel
+from src.infrastructure.customer.repository.peewee.customer_model import CustomerModel
 
 
 class OrderModel(BaseModel):

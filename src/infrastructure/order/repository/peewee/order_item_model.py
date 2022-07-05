@@ -1,8 +1,8 @@
 from peewee import CharField, FloatField, ForeignKeyField, IntegerField
 
-from src.infrastructure.db.peewee.model.base_model import BaseModel
-from src.infrastructure.db.peewee.model.order_model import OrderModel
-from src.infrastructure.db.peewee.model.product_model import ProductModel
+from src.infrastructure.shared.repository.peewee.base_model import BaseModel
+from src.infrastructure.order.repository.peewee.order_model import OrderModel
+from src.infrastructure.product.repository.peewee.product_model import ProductModel
 
 
 class OrderItemModel(BaseModel):

@@ -3,9 +3,9 @@ from typing import List
 from src.domain.checkout.entity.order import Order
 from src.domain.checkout.entity.order_item import OrderItem
 from src.domain.checkout.repository.order_repository_interface import OrderRepositoryInterface
-from src.infrastructure.db.peewee.model.base_model import sqlite_db
-from src.infrastructure.db.peewee.model.order_item_model import OrderItemModel
-from src.infrastructure.db.peewee.model.order_model import OrderModel
+from src.infrastructure.shared.repository.peewee.base_model import sqlite_db
+from src.infrastructure.order.repository.peewee.order_item_model import OrderItemModel
+from src.infrastructure.order.repository.peewee.order_model import OrderModel
 
 
 class OrderRepository(OrderRepositoryInterface):

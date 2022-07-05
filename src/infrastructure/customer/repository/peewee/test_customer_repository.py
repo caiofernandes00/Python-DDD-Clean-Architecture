@@ -4,9 +4,9 @@ import pytest
 
 from src.domain.customer.value_object.address import Address
 from src.domain.customer.entity.customer import Customer
-from src.infrastructure.db.peewee.model.base_model import sqlite_db
-from src.infrastructure.db.peewee.model.customer_model import CustomerModel
-from src.infrastructure.repository.customer_repository import CustomerRepository
+from src.infrastructure.shared.repository.peewee.base_model import sqlite_db
+from src.infrastructure.customer.repository.peewee.customer_model import CustomerModel
+from src.infrastructure.customer.repository.peewee.customer_repository import CustomerRepository
 
 
 class TestCustomerRepository:

@@ -2,7 +2,7 @@ from typing import List
 
 from src.domain.product.entity.product import Product
 from src.domain.product.repository.product_repository_interface import ProductRepositoryInterface
-from src.infrastructure.db.peewee.model.product_model import ProductModel
+from src.infrastructure.product.repository.peewee.product_model import ProductModel
 
 
 class ProductRepository(ProductRepositoryInterface):

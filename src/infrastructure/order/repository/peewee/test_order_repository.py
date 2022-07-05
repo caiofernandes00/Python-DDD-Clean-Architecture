@@ -7,12 +7,12 @@ from src.domain.customer.entity.customer import Customer
 from src.domain.checkout.entity.order import Order
 from src.domain.checkout.entity.order_item import OrderItem
 from src.domain.product.entity.product import Product
-from src.infrastructure.db.peewee.model.base_model import sqlite_db
-from src.infrastructure.db.peewee.model.customer_model import CustomerModel as CustomerModel
-from src.infrastructure.db.peewee.model.order_item_model import OrderItemModel
-from src.infrastructure.db.peewee.model.order_model import OrderModel
-from src.infrastructure.db.peewee.model.product_model import ProductModel
-from src.infrastructure.repository.order_repository import OrderRepository
+from src.infrastructure.shared.repository.peewee.base_model import sqlite_db
+from src.infrastructure.customer.repository.peewee.customer_model import CustomerModel as CustomerModel
+from src.infrastructure.order.repository.peewee.order_item_model import OrderItemModel
+from src.infrastructure.order.repository.peewee.order_model import OrderModel
+from src.infrastructure.product.repository.peewee.product_model import ProductModel
+from src.infrastructure.order.repository.peewee.order_repository import OrderRepository
 
 
 class TestOrderRepository:

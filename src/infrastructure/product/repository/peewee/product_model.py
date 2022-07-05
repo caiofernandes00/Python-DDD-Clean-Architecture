@@ -1,6 +1,6 @@
 from peewee import CharField, FloatField
 
-from src.infrastructure.db.peewee.model.base_model import BaseModel
+from src.infrastructure.shared.repository.peewee.base_model import BaseModel
 
 
 class ProductModel(BaseModel):
