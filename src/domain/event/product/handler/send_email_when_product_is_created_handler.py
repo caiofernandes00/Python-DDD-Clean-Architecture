@@ -4,6 +4,5 @@ from src.domain.event.shared.event_handler_interface import EventHandlerInterfac
 
 class SendEmailWhenProductIsCreatedHandler(EventHandlerInterface):
 
-    def handle(self, event: ProductCreatedEvent) -> ProductCreatedEvent:
+    def handle(self, event: ProductCreatedEvent) -> None:
         print("Sending email...")
-        return event

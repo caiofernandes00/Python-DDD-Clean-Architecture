@@ -5,8 +5,8 @@ from src.domain.event.shared.event_interface import EventInterface
 
 
 class ProductCreatedEvent(EventInterface):
-    def __init__(self, data_time_occurred: datetime, event_date: Any):
-        self.__data_time_occurred = data_time_occurred
+    def __init__(self, event_date: Any):
+        self.__data_time_occurred = datetime.now()
         self.__event_data = event_date
 
     def data_time_occurred(self) -> datetime:

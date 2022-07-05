@@ -16,7 +16,10 @@ class EventDispatcher(EventDispatcherInterface):
         return self.__event_handlers
 
     def notify(self, event: EventInterface) -> None:
-        pass
+        event_name = type(event).__name__
+        if self.__event_handlers.get(event_name):
+            for event_handler in self.__event_handlers[event_name]:
+                event_handler.handle(event)
 
     def register(self, event_name: str, event_handler: EventHandlerInterface) -> None:
         if not self.__event_handlers.get(event_name):
@@ -29,4 +32,4 @@ class EventDispatcher(EventDispatcherInterface):
             del self.__event_handlers[event_name][index]
 
     def unregister_all(self) -> None:
-        pass
+        self.__event_handlers = dict()

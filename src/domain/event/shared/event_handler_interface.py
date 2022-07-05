@@ -9,5 +9,5 @@ T = TypeVar('T', bound=EventInterface)
 class EventHandlerInterface(ABC, Generic[T]):
 
     @abstractmethod
-    def handle(self, event: T) -> T:
+    def handle(self, event: T) -> None:
         pass
