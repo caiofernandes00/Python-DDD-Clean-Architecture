@@ -14,4 +14,22 @@ class TestEventDispatcher:
 
         # Then
         assert len(event_dispatcher.event_handlers) == 1
+        assert len(event_dispatcher.event_handlers['ProductCreatedEvent']) == 1
         assert event_dispatcher.event_handlers["ProductCreatedEvent"] == [event_handler]
+
+    def test_unregister_an_event(self):
+        # When
+        event_dispatcher = EventDispatcher()
+        event_handler = SendEmailWhenProductIsCreatedHandler()
+
+        event_dispatcher.register("ProductCreatedEvent", event_handler)
+        assert len(event_dispatcher.event_handlers) == 1
+        assert len(event_dispatcher.event_handlers['ProductCreatedEvent']) == 1
+        assert event_dispatcher.event_handlers["ProductCreatedEvent"] == [event_handler]
+
+        event_dispatcher.unregister("ProductCreatedEvent", event_handler)
+
+        # Then
+        assert len(event_dispatcher.event_handlers) == 1
+        assert len(event_dispatcher.event_handlers['ProductCreatedEvent']) == 0
+        assert event_dispatcher.event_handlers["ProductCreatedEvent"] == []

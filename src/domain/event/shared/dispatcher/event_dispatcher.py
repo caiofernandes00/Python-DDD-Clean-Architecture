@@ -24,7 +24,9 @@ class EventDispatcher(EventDispatcherInterface):
         self.__event_handlers.get(event_name).append(event_handler)
 
     def unregister(self, event_name: str, event_handler: EventHandlerInterface) -> None:
-        pass
+        if self.__event_handlers.get(event_name):
+            index = self.event_handlers[event_name].index(event_handler)
+            del self.__event_handlers[event_name][index]
 
     def unregister_all(self) -> None:
         pass
