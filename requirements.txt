@@ -1,3 +1,4 @@
 fastapi==0.78.0
-pytest~=7.1.2
-peewee~=3.15.0
+peewee==3.15.0
+uvicorn==0.17.6
+pytest==7.1.2
