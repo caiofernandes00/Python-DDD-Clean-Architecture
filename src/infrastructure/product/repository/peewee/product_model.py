@@ -9,4 +9,4 @@ class ProductModel(BaseModel):
     price = FloatField(null=False)
 
     class Meta:
-        db_table = 'product'
+        table_name = 'product'

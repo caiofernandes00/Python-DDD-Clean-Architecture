@@ -14,4 +14,4 @@ class CustomerModel(BaseModel):
     reward_points = IntegerField(default=1)
 
     class Meta:
-        db_table = 'customer'
+        table_name = 'customer'

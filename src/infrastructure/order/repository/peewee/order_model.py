@@ -12,4 +12,4 @@ class OrderModel(BaseModel):
     customer_id: str
 
     class Meta:
-        db_table = 'order'
+        table_name = 'order'

@@ -17,4 +17,4 @@ class OrderItemModel(BaseModel):
     product_id: str
 
     class Meta:
-        db_table = 'order_item'
+        table_name = 'order_item'
