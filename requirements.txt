@@ -2,3 +2,4 @@ fastapi==0.78.0
 peewee==3.15.0
 uvicorn==0.17.6
 pytest==7.1.2
+dict2xml==1.7.1

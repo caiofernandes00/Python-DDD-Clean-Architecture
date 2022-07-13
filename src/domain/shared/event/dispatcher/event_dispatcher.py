@@ -1,8 +1,8 @@
 from typing import Dict, List
 
-from src.domain.event.shared.event_dispatcher_interface import EventDispatcherInterface
-from src.domain.event.shared.event_handler_interface import EventHandlerInterface
-from src.domain.event.shared.event_interface import EventInterface
+from src.domain.shared.event.event_dispatcher_interface import EventDispatcherInterface
+from src.domain.shared.event.event_handler_interface import EventHandlerInterface
+from src.domain.shared.event.event_interface import EventInterface
 
 EventHandlerMappers = Dict[str, List[EventHandlerInterface]]
 

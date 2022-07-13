@@ -12,5 +12,9 @@ pythom -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 pip install "fastapi[all]"
+
+# To execute the server to test the API
 uvicorn src.infrastructure.api.server:app --reload
+# To execute the tests
+pytest
 ```

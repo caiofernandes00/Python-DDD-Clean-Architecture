@@ -7,8 +7,8 @@ from src.infrastructure.product.repository.peewee.product_model import ProductMo
 
 class OrderItemModel(BaseModel):
     id = CharField(primary_key=True)
-    order = ForeignKeyField(OrderModel, field='id', backref="order", db_column="order_id")
-    product = ForeignKeyField(ProductModel, field='id', backref="product", db_column="product_id")
+    order = ForeignKeyField(OrderModel, field='id', backref="order", column_name="order_id")
+    product = ForeignKeyField(ProductModel, field='id', backref="product", column_name="product_id")
     quantity = IntegerField(null=False)
     name = CharField(null=False)
     price = FloatField(null=False)

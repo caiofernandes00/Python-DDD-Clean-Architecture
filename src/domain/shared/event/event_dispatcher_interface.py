@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from src.domain.event.shared.event_handler_interface import EventHandlerInterface
-from src.domain.event.shared.event_interface import EventInterface
+from src.domain.shared.event.event_handler_interface import EventHandlerInterface
+from src.domain.shared.event.event_interface import EventInterface
 
 
 class EventDispatcherInterface(ABC):
