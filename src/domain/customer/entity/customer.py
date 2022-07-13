@@ -1,9 +1,12 @@
 from src.domain.customer.value_object.address import Address
+from src.domain.shared.entity.entity_abstract import Entity
+from src.domain.shared.notification.notification import NotificationErrorProps
+from src.domain.shared.notification.notification_error import NotificationError
 
 
-class Customer:
+class Customer(Entity):
     def __init__(self, uid: str, name: str, address: Address = None) -> None:
-        self.__id = uid
+        super().__init__(uid)
         self.__name = name
         self.__active = False
         self.__reward_points: float = 0
@@ -11,10 +14,6 @@ class Customer:
         self.__address: Address = address
 
         self.validate()
-
-    @property
-    def id(self) -> str:
-        return self.__id
 
     @property
     def name(self) -> str:
@@ -42,25 +41,35 @@ class Customer:
         self.__validate_id()
         self.__validate_name()
 
+        if self._notification.has_errors():
+            raise NotificationError(self._notification.errors)
+
     def change_name(self, name: str) -> None:
         self.__name = name
         self.__validate_name()
+        if self._notification.has_errors():
+            raise NotificationError(self._notification.errors)
 
     def activate(self) -> None:
         self.__validate_address()
         self.__active = True
+        if self._notification.has_errors():
+            raise NotificationError(self._notification.errors)
 
     def deactivate(self) -> None:
         self.__active = False
 
     def __validate_name(self) -> None:
         if self.__name is None or self.__name is None or self.__name.__len__() == 0:
-            raise Exception("Name is required")
+            error = NotificationErrorProps(message="Customer name is required", context=type(self).__name__)
+            self._notification.add_error(error)
 
     def __validate_id(self) -> None:
-        if self.__id.__len__() == 0:
-            raise Exception("Id is required")
+        if self.id.__len__() == 0:
+            error = NotificationErrorProps(message="Customer id is required", context=type(self).__name__)
+            self._notification.add_error(error)
 
     def __validate_address(self) -> None:
         if self.__address is None:
-            raise Exception("Address is mandatory to activate a customer")
+            error = NotificationErrorProps(message="Customer address is required", context=type(self).__name__)
+            self._notification.add_error(error)

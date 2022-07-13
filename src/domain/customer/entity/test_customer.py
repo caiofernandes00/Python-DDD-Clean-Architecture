@@ -1,7 +1,8 @@
 import pytest
 
-from src.domain.customer.value_object.address import Address
 from src.domain.customer.entity.customer import Customer
+from src.domain.customer.value_object.address import Address
+from src.domain.shared.notification.notification_error import NotificationError
 
 
 class TestCustomer:
@@ -38,13 +39,26 @@ class TestCustomer:
 
     def test_create_customer_with_invalid_id(self):
         # Then
-        with pytest.raises(Exception):
+        with pytest.raises(NotificationError) as ex:
             Customer(uid="", name="fake-name")
+
+        assert ex.value.args[0] == "Customer id is required"
 
     def test_create_customer_with_invalid_name(self):
         # Then
-        with pytest.raises(Exception):
+        with pytest.raises(NotificationError) as ex:
             Customer(uid="1", name="")
+
+        assert ex.value.args[0] == "Customer name is required"
+
+    def test_create_customer_with_many_errors(self):
+        # Then
+        with pytest.raises(NotificationError) as ex:
+            Customer(uid="", name="")
+
+        errors = ex.value.args[0].split(", ")
+        assert errors[0] == "Customer id is required"
+        assert errors[1] == 'Customer name is required'
 
     # endregion
 
@@ -62,8 +76,10 @@ class TestCustomer:
         customer = Customer("1", "fake-name")
 
         # Then
-        with pytest.raises(Exception):
+        with pytest.raises(NotificationError) as ex:
             customer.activate()
+
+        assert ex.value.args[0] == "Customer address is required"
 
     # endregion
 
@@ -83,8 +99,10 @@ class TestCustomer:
 
         # Then
         assert customer.name == "fake-name"
-        with pytest.raises(Exception):
+        with pytest.raises(NotificationError) as ex:
             customer.change_name("")
+
+        assert ex.value.args[0] == "Customer name is required"
 
     def test_changing_address_with_success(self):
         # When
