@@ -1,3 +1,4 @@
+from src.domain.customer.factory.customer_validator_factory import CustomerValidatorFactory
 from src.domain.customer.value_object.address import Address
 from src.domain.shared.entity.entity_abstract import Entity
 from src.domain.shared.notification.notification import NotificationErrorProps
@@ -37,39 +38,22 @@ class Customer(Entity):
     def change_address(self, address: Address) -> None:
         self.__address = address
 
-    def validate(self):
-        self.__validate_id()
-        self.__validate_name()
-
-        if self._notification.has_errors():
-            raise NotificationError(self._notification.errors)
+    def validate(self) -> None:
+        CustomerValidatorFactory.create().validate(self)
+        if self.notification.has_errors():
+            raise NotificationError(self.notification.errors)
 
     def change_name(self, name: str) -> None:
         self.__name = name
-        self.__validate_name()
-        if self._notification.has_errors():
-            raise NotificationError(self._notification.errors)
+        CustomerValidatorFactory.create().validate(self)
+        if self.notification.has_errors():
+            raise NotificationError(self.notification.errors)
 
     def activate(self) -> None:
-        self.__validate_address()
+        if self.__address is None:
+            raise NotificationError(
+                [NotificationErrorProps(message="Customer address is required", context=type(self).__name__)])
         self.__active = True
-        if self._notification.has_errors():
-            raise NotificationError(self._notification.errors)
 
     def deactivate(self) -> None:
         self.__active = False
-
-    def __validate_name(self) -> None:
-        if self.__name is None or self.__name is None or self.__name.__len__() == 0:
-            error = NotificationErrorProps(message="Customer name is required", context=type(self).__name__)
-            self._notification.add_error(error)
-
-    def __validate_id(self) -> None:
-        if self.id.__len__() == 0:
-            error = NotificationErrorProps(message="Customer id is required", context=type(self).__name__)
-            self._notification.add_error(error)
-
-    def __validate_address(self) -> None:
-        if self.__address is None:
-            error = NotificationErrorProps(message="Customer address is required", context=type(self).__name__)
-            self._notification.add_error(error)
