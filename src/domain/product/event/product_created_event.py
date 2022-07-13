@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any
 
-from src.domain.event.shared.event_interface import EventInterface
+from src.domain.shared.event.event_interface import EventInterface
 
 
 class ProductCreatedEvent(EventInterface):
